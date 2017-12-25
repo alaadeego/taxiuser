@@ -10,11 +10,18 @@ import UIKit
 
 class FinshSignUpViewController: UIViewController {
 
+    var isFromSocialLogin: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-            self.performSegue(withIdentifier: "login", sender: self)        })
-        // Do any additional setup after loading the view.
+        
+        if isFromSocialLogin{
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                self.performSegue(withIdentifier: "map", sender: self)        })
+        }else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
+                self.performSegue(withIdentifier: "login", sender: self)        })
+        }
     }
 
     override func didReceiveMemoryWarning() {

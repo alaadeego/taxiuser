@@ -12,10 +12,11 @@ import SkyFloatingLabelTextField
 class ForgetPassViewController: UIViewController {
 
     @IBOutlet var phoneEditText: SkyFloatingLabelTextFieldWithIcon!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        phoneEditText.isLTRLanguage = false
         
+        phoneEditText.isLTRLanguage = false
         phoneEditText.iconText = "\u{f095}"
         
         // Do any additional setup after loading the view.
@@ -40,28 +41,21 @@ class ForgetPassViewController: UIViewController {
     
 
     @IBAction func nextButtonClicked(_ sender: Any) {
-        if (phoneEditText.text!.count != 0){
+        
+         if phoneEditText.text!.count == 0{
+            phoneEditText.errorMessage = "ادخل البريد الالكتروني الصحيح".localized()
+         }
+         else {
             phoneEditText.errorMessage = ""
-            AppDelegate.currentDriver.phoneNumber = phoneEditText.text!
-            let code = String( Int(arc4random_uniform(8999) + 1000))
-            AppDelegate.code = code
-            Services.services.sendCode(uiViewController: self, code: code)
-
-            
-        }
-        else {
-            phoneEditText.errorMessage = "ادخل رقم الهاتف"
-        }
+            AppDelegate.currentUser.email = phoneEditText.text!
+            Services.services.checkPhone(uiViewController: self, completion_callback: { (result) in
+                
+                if result != "failed"{
+                    let code = String( Int(arc4random_uniform(8999) + 1000))
+                    AppDelegate.code = Comman().convertToEnglish(string: code)
+                    Services.services.sendCode(uiViewController: self, code: code, numbers:result,loginType:1)
+                }
+            })
+         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

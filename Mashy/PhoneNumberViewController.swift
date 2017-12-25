@@ -16,7 +16,6 @@ class PhoneNumberViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         numberEditText.isLTRLanguage = false
-        
         numberEditText.iconText = "\u{f095}"
         // Do any additional setup after loading the view.
     }

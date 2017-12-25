@@ -24,4 +24,5 @@ class Constants{
     static let CANCEL_TRIP =  DOMAIN + "CancelTrip.php"
     static let SEND_CODE =  "http://www.mobily.ws/api/msgSend.php"
 
+    static let CHECK_PHONE = DOMAIN + "GetUserPhone.php"
 }

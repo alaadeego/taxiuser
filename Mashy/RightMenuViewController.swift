@@ -157,7 +157,29 @@ extension RightMenuViewController: UITableViewDelegate, UITableViewDataSource {
             break
         case 2:
            
-           Services.services.getUserTrips(uiViewController: AppDelegate.viewController)
+            Services.services.callToGetUserTrips(uiViewController: AppDelegate.viewController, completion_callback: { (result) in
+                var trips :Array = [Trip]()
+
+                if (result["result"] as? String) != nil {
+                    self.view.makeToast("البريد الالكتروني صحيح".localized())
+                }
+                else if let check = result["result"] as? NSArray {
+                    
+                    for i in 0 ..< check.count {
+                        let userTrip = check[i] as? NSDictionary
+                        trips.append(Trip(end: userTrip!["End"] as! String,price: userTrip!["Price"] as! String,start: userTrip!["Start"] as! String,time: userTrip!["Time"] as! String,distance: userTrip!["Distance"] as! String))
+                    }
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "trips")as! TripsViewController
+                    vc.trips = trips
+
+                    let rvc:SWRevealViewController = self.revealViewController() as SWRevealViewController
+                    rvc.pushFrontViewController(vc, animated: true)
+                    
+                }
+                
+            })
             break
         case 5:
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -10,7 +10,8 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Firebase
-
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 //Google api AIzaSyB6QG55fRoUlKU9rGZsl3KnE5Ra1Eq841c
 // credentials api AIzaSyCXGTZD5adcezZ3XVPeu24Fek3EPL1OEYU
@@ -46,40 +47,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
         // Override point for customization after application launch.
 
-          //Amany Edit
-         //google api foe app mashy
+        //Amany Edit
+        //google api foe app mashy
         GMSServices.provideAPIKey("AIzaSyAAi-aXfPJnNb3Ck3wZobUvI4bXMeVSxmk")
-          // for google places
-          //Amany Edit
+        // for google places
+        //Amany Edit
         GMSPlacesClient.provideAPIKey("AIzaSyAAi-aXfPJnNb3Ck3wZobUvI4bXMeVSxmk")
-//        FirebaseApp.configure()
+
+        
+        //FirebaseApp.configure()
         FIRApp.configure()
+        
+        //--------Mukesh Code----------\\
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
-
-         //Amany Edit
-        // change navigation Bar color and title color overall app
-
-      //  UINavigationBar.appearance().tintColor = UIColor.white
-       // UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
-//        var configureError: NSError?
-//        GGLContext.sharedInstance().configureWithError(&configureError)
-//        assert(configureError == nil, "Error configuring Google services: \(configureError)")
-//        
-//        GIDSignIn.sharedInstance().delegate = self
+        // init Google SDK
+        var configureError: NSError?
+        GGLContext.sharedInstance().configureWithError(&configureError)
+        assert(configureError == nil, "Error configuring Google services: \(String(describing: configureError))")
+        
+        //--------Mukesh Code End ----------\\
         
         print ("amal")
         return true
-    }
-
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        let checkGoogle = GIDSignIn.sharedInstance().handle(url as URL!,sourceApplication: sourceApplication,annotation: annotation)
-        print("/////////////")
-        
-        print(checkGoogle)
-        print("/////////////")
-        
-        return checkGoogle
-        
     }
 
 
@@ -99,12 +89,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        FBSDKAppEvents.activateApp()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+     
+        let loginManager:FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logOut()
+
     }
-
-
+   
+    //MARK: - Open URL
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool
+    {
+        
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+            || GIDSignIn.sharedInstance().handle(url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+        /*
+        if GIDSignIn.sharedInstance().handle(url as URL!, sourceApplication: sourceApplication, annotation: annotation){
+            return true
+        }else if(FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)){
+            return true
+        }else{
+            return
+        }*/
+//        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url as URL!, sourceApplication: sourceApplication, annotation: annotation)
+    }
+    
 }
-

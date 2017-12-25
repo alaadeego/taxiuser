@@ -12,7 +12,7 @@ import SkyFloatingLabelTextField
 class CodeViewController: UIViewController {
 
     @IBOutlet var codeEditText: SkyFloatingLabelTextFieldWithIcon!
-    
+    @IBOutlet weak var lblToDisplayCode: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         codeEditText.isLTRLanguage = false
@@ -21,7 +21,7 @@ class CodeViewController: UIViewController {
         
         //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
         tap.cancelsTouchesInView = false
-        
+        lblToDisplayCode.text = AppDelegate.code
         view.addGestureRecognizer(tap)
     }
     
@@ -40,7 +40,6 @@ class CodeViewController: UIViewController {
         if (codeEditText.text! == AppDelegate.code){
             codeEditText.errorMessage = ""
             performSegue(withIdentifier: "new_pass", sender: self)
-            
         }
         else {
             codeEditText.errorMessage = "الكود غير صحيح"
@@ -50,19 +49,7 @@ class CodeViewController: UIViewController {
     @IBAction func resendCodeButton(_ sender: Any) {
         
         let code = String( Int(arc4random_uniform(8999) + 1000))
-        AppDelegate.code = code
-        Services.services.sendCode(uiViewController: self, code: code )
-
-        
+        AppDelegate.code = Comman().convertToEnglish(string: code)
+        Services.services.sendCode(uiViewController: self, code: code, numbers:"",loginType:1)        
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

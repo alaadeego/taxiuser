@@ -40,9 +40,10 @@ class NewPassViewController: UIViewController {
     }
     
     @IBAction func nextButtonAction(_ sender: Any) {
+       
         if validation(){
             AppDelegate.currentUser.pass = passEditText.text!
-Services.services.resetPass(uiViewController: self)
+            Services.services.resetPassward(uiViewController: self)
         }
     }
     func validation()-> Bool{
@@ -51,8 +52,6 @@ Services.services.resetPass(uiViewController: self)
             return false
         }
         repassEditText.errorMessage = ""
-        
-        
         return true
         
         

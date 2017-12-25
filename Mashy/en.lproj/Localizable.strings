@@ -14,4 +14,7 @@
 "enter valid email" = "ادخل البريد الالكتروني الصحيح";
 "enter password" = "ادخل كلمه المرور";
 "No internet connection" = "لا يوجد انترنت";
-
+"enter_email" = "Enter Email";
+"enter_phone" = "Enter Phone Number";
+"enter_your_phone" = "Enter your phone number";
+"enter_code" = "Enter code";

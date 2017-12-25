@@ -19,11 +19,9 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.439536779712-6ahg1bnhbuuf9p75beshaahduc820bio</string>
+				<string>fb177519616167306</string>
 			</array>
 		</dict>
 		<dict>
@@ -31,12 +29,23 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.mashy.mashy</string>
+				<string>com.googleusercontent.apps.439536779712-6ahg1bnhbuuf9p75beshaahduc820bio</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>177519616167306</string>
+	<key>FacebookDisplayName</key>
+	<string>testapp</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

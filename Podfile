@@ -20,18 +20,6 @@ target 'Mashy' do
     pod 'SDWebImage', '~> 4.0'
     pod 'GooglePlacesSearchController'
 
-
-
-  
-
-
-
-
-
-
-
-
-
   # Pods for Mashy
 
 end

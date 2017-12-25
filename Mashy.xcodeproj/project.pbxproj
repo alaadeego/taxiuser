@@ -61,6 +61,12 @@
 		96F91B4E1FDB4466006DF89D /* TrackDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F91B4D1FDB4466006DF89D /* TrackDriverViewController.swift */; };
 		96F91B501FDB5A3B006DF89D /* RatingDriverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F91B4F1FDB5A3B006DF89D /* RatingDriverViewController.swift */; };
 		96F91B541FDB72EB006DF89D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F91B531FDB72EB006DF89D /* SettingViewController.swift */; };
+		E9276E1B1FE9963300248D0F /* CommanClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9276E1A1FE9963300248D0F /* CommanClass.swift */; };
+		E99BD7801FE6384900906325 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BD77D1FE6384700906325 /* FBSDKLoginKit.framework */; };
+		E99BD7811FE6384900906325 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BD77E1FE6384700906325 /* Bolts.framework */; };
+		E99BD7821FE6384900906325 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99BD77F1FE6384900906325 /* FBSDKCoreKit.framework */; };
+		E9D08B671FE6DAAD00277AB5 /* PhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D08B661FE6DAAD00277AB5 /* PhoneViewController.swift */; };
+		E9D08B691FE6DB5800277AB5 /* CodeRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D08B681FE6DB5800277AB5 /* CodeRegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +135,12 @@
 		96F91B4F1FDB5A3B006DF89D /* RatingDriverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDriverViewController.swift; sourceTree = "<group>"; };
 		96F91B531FDB72EB006DF89D /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		E0E8F1CB1D800FEDFE917DF2 /* Pods_Mashy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mashy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E9276E1A1FE9963300248D0F /* CommanClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommanClass.swift; sourceTree = "<group>"; };
+		E99BD77D1FE6384700906325 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		E99BD77E1FE6384700906325 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		E99BD77F1FE6384900906325 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		E9D08B661FE6DAAD00277AB5 /* PhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneViewController.swift; sourceTree = "<group>"; };
+		E9D08B681FE6DB5800277AB5 /* CodeRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeRegisterViewController.swift; sourceTree = "<group>"; };
 		F8ED001B14108D633745972D /* Pods-Mashy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mashy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mashy/Pods-Mashy.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,8 +149,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E99BD7821FE6384900906325 /* FBSDKCoreKit.framework in Frameworks */,
 				9675B2861FC0E40800D38BD1 /* iAd.framework in Frameworks */,
 				7D4B173E2E9F721EADC5EDB2 /* Pods_Mashy.framework in Frameworks */,
+				E99BD7801FE6384900906325 /* FBSDKLoginKit.framework in Frameworks */,
+				E99BD7811FE6384900906325 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +181,8 @@
 		047F95661FA2882F009110FF /* Mashy */ = {
 			isa = PBXGroup;
 			children = (
+				E9276E191FE9961E00248D0F /* Comman */,
+				E99BD77C1FE637FA00906325 /* Framework */,
 				9605AE241FAD39BA00E830B1 /* Utilities */,
 				9605AE1F1FAD38D100E830B1 /* Controllers */,
 				960CF45B1FACC27400CA386E /* Models */,
@@ -211,6 +228,8 @@
 				96A33A611FBBB9A7001779DD /* CodeViewController.swift */,
 				96C352031FBCE65F00AB305B /* NewPassViewController.swift */,
 				96AE38031FD8D8F800E27D55 /* ProfileViewController.swift */,
+				E9D08B661FE6DAAD00277AB5 /* PhoneViewController.swift */,
+				E9D08B681FE6DB5800277AB5 /* CodeRegisterViewController.swift */,
 			);
 			path = Mashy;
 			sourceTree = "<group>";
@@ -285,6 +304,24 @@
 				9669322D1FDC9BC500096F5A /* CancelTripReasons.swift */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		E9276E191FE9961E00248D0F /* Comman */ = {
+			isa = PBXGroup;
+			children = (
+				E9276E1A1FE9963300248D0F /* CommanClass.swift */,
+			);
+			path = Comman;
+			sourceTree = "<group>";
+		};
+		E99BD77C1FE637FA00906325 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				E99BD77E1FE6384700906325 /* Bolts.framework */,
+				E99BD77F1FE6384900906325 /* FBSDKCoreKit.framework */,
+				E99BD77D1FE6384700906325 /* FBSDKLoginKit.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 		FCF3F5FB17AA1DA509471A35 /* Frameworks */ = {
@@ -474,11 +511,14 @@
 				960CF45F1FACC38200CA386E /* UserEmailViewController.swift in Sources */,
 				96C8C28E1FB4FF77005A490A /* DriverLinceseViewController.swift in Sources */,
 				96C8C2921FB68BA4005A490A /* DriverProfilePicViewController.swift in Sources */,
+				E9D08B691FE6DB5800277AB5 /* CodeRegisterViewController.swift in Sources */,
 				96F91B541FDB72EB006DF89D /* SettingViewController.swift in Sources */,
 				047F95681FA28830009110FF /* AppDelegate.swift in Sources */,
 				9605AE261FAD3A2000E830B1 /* Constants.swift in Sources */,
+				E9D08B671FE6DAAD00277AB5 /* PhoneViewController.swift in Sources */,
 				96AE38041FD8D8F800E27D55 /* ProfileViewController.swift in Sources */,
 				9605AE2A1FAD55CE00E830B1 /* FinshSignUpViewController.swift in Sources */,
+				E9276E1B1FE9963300248D0F /* CommanClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +653,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = C4646GFFLP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mashy",
+				);
 				INFOPLIST_FILE = Mashy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashy.mashy;
@@ -630,6 +674,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = C4646GFFLP;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Mashy",
+				);
 				INFOPLIST_FILE = Mashy/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mashy.mashy;

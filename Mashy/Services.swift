@@ -20,6 +20,212 @@ class Services{
     //fireBase
     var ref: FIRDatabaseReference?
 
+    //--------------------------------------------------------------------------------------------\\
+
+    //#MARK: -
+    //#MARK: - Newely added methods by Mukesh
+    //#MARK: -
+    
+    //--------------------------------------------------------------------------------------------\\
+
+    
+    //#MARK: - Send Code API
+    func sendCode(uiViewController : UIViewController , code:String ,numbers:String, loginType:Int){
+        let parameters: Parameters = ["mobile": "966563403905" ,
+                                      "password": "123asd!@#" ,
+                                      "sender": "AAIT.SA" ,
+                                      "msg": code ,
+                                      "lang": "3" ,
+                                      "applicationType": "68" ,
+                                      "numbers": numbers]
+        let link = Constants.SEND_CODE
+        Alamofire.request(link, method: .post, parameters: parameters).responseJSON { response in
+            print(response.result.value!)
+            let JSON = response.result.value  as? NSDecimalNumber
+            let number = JSON
+            if number != nil {
+                if number == 1 {
+                    if loginType == 1{
+                        //General Login Type
+                        uiViewController.performSegue(withIdentifier: "enter_code", sender: self)
+                    }else{
+                        //Social Login Type
+                        let mainStoryboard:UIStoryboard = UIStoryboard(name:"Main" , bundle:nil)
+                        let desController = mainStoryboard.instantiateViewController(withIdentifier: "CodeRegisterViewController") as! CodeRegisterViewController
+                        uiViewController.present(desController, animated: true, completion: nil)
+                    }
+                }else{
+                    uiViewController.view.makeToast("الرقم غير صالح".localized())
+                }
+                
+            }else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+            }
+        }
+    }
+    
+    //#MARK: - Check Email for Reset
+
+    func checkEmailForReset(uiViewController : UIViewController, completion_callback: @escaping (_ result: String) -> Void){
+        let link = Constants.CHECK_EMAIL + "?Email=" + AppDelegate.currentUser.email
+        print (link)
+        Alamofire.request(link, method: .get ).responseJSON { response in
+            if let JSON = response.result.value  as? NSDictionary{
+                let check = JSON["result"] as! String
+                if (check == "found"){
+                    completion_callback("success")
+                }
+                else {
+                    uiViewController.view.makeToast("هذا الايميل غير موجود مسبقا")
+                    completion_callback("failed")
+                }
+            }
+            else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+                completion_callback("failed")
+            }
+        }
+    }
+    
+    //#MARK: - Check Phone for Reset Pwd
+
+    func checkPhone(uiViewController : UIViewController, completion_callback: @escaping (_ result: String) -> Void){
+        
+        
+        let link = Constants.CHECK_PHONE + "?Email=" + AppDelegate.currentUser.email
+        Alamofire.request(link, method: .get ).responseJSON { response in
+            if let JSON = response.result.value  as? NSDictionary{
+                let check = JSON["result"] as! String
+              
+                if (check == "not found"){
+                    uiViewController.view.makeToast("هذا الايميل غير موجود مسبقا")
+                    completion_callback("failed")
+                }else {
+                    completion_callback(check)
+                }
+            }
+            else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+                completion_callback("failed")
+                
+            }
+        }
+    }
+    
+    //#MARK: - Reset Pwd API Call
+    func resetPassward(uiViewController : UIViewController){
+        let parameters: Parameters = ["Password": AppDelegate.currentUser.pass ,
+                                      "Email": AppDelegate.currentUser.email ]
+        
+        let link = Constants.RESET_PASS
+        Alamofire.request(link, method: .get, parameters: parameters).responseJSON { response in
+            print(response.result.value as Any)
+            if let JSON = response.result.value  as? NSDictionary{
+                let check = JSON["Result"] as! String
+                if (check == "Done"){
+                }
+            }
+            else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+            }
+            
+        }
+    }
+    
+    
+    //#MARK: - Check Email Exist or Not
+
+    func checkEmailExistOrNot(uiViewController : UIViewController, email: String){
+        let defaults:UserDefaults = UserDefaults.standard
+        
+        let link = Constants.CHECK_EMAIL + "?Email=" + email
+        print (link)
+        Alamofire.request(link, method: .get ).responseJSON { response in
+            print(response.result.value as Any)
+            if let JSON = response.result.value  as? NSDictionary{
+                let check = JSON["result"] as! String
+                if (check == "found"){
+                    
+                    defaults.set( email, forKey: "Email_KeyPref")
+                    defaults.set("", forKey: "ID_KeyPref")
+                    defaults.set("1", forKey: "IS_LOGIN")
+                    
+                    uiViewController.performSegue(withIdentifier: "map", sender: uiViewController)
+                }
+                else {
+                    //Phone scene to insert social user
+                    
+                    let mainStoryboard:UIStoryboard = UIStoryboard(name:"Main" , bundle:nil)
+                    let desController = mainStoryboard.instantiateViewController(withIdentifier: "PhoneViewController") as! PhoneViewController
+                    uiViewController.present(desController, animated: true, completion: nil)
+
+                }
+            }
+            else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+            }
+        }
+    }
+    
+    //#MARK: - Insert User API Call
+    func insertUser(uiViewController : UIViewController){
+       
+        let  userPhone = "+"+AppDelegate.currentUser.phone // Appending + sign to save phone in original format
+        
+        let parameters: Parameters = ["Password": AppDelegate.currentUser.pass ,
+                                      "Email": AppDelegate.currentUser.email ,
+                                      "Name": AppDelegate.currentUser.name ,
+                                      "Phone": userPhone ]
+        
+        let link = Constants.SIGN_UP
+        Alamofire.request(link, method: .get, parameters: parameters).responseJSON { response in
+            print(response.result.value as Any)
+            if let JSON = response.result.value  as? NSDictionary{
+                let check = JSON["Result"] as! String
+                if (check == "successfully"){
+                            let mainStoryboard:UIStoryboard = UIStoryboard(name:"Main" , bundle:nil)
+                    let desController:FinshSignUpViewController = mainStoryboard.instantiateViewController(withIdentifier: "signupfinished") as! FinshSignUpViewController
+                    desController.isFromSocialLogin = true
+                    uiViewController.present(desController, animated: true, completion: nil)
+                }
+            }
+            else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+            }
+            
+        }
+    }
+    
+    
+    //  Call To GetUserTrips for user
+    func callToGetUserTrips(uiViewController : UIViewController,
+                            completion_callback: @escaping (_ result: NSDictionary) -> Void){
+        
+        let link = Constants.USER_TRIPS + "?Email=" + AppDelegate.currentUser.email
+        
+        Alamofire.request(link, method: .get ).responseJSON { response in
+            if let JSON = response.result.value  as? NSDictionary{
+                completion_callback(JSON)
+            }
+            else{
+                uiViewController.view.makeToast("لا يوجد انترنت".localized())
+            }
+            
+        }
+    }
+    
+    
+    //--------------------------------------------------------------------------------------------\\
+    
+    //#MARK: -
+    //#MARK: - Newely added methods by Mukesh end
+    //#MARK: -
+    
+    
+    //--------------------------------------------------------------------------------------------\\
+
+    
+    
     func checkEmail(uiViewController : UIViewController){
         
         
@@ -56,46 +262,14 @@ class Services{
 
         }
     }
-    func checkEmailForReset(uiViewController : UIViewController){
-        
-        
-        let link = Constants.CHECK_EMAIL + "?Email=" + AppDelegate.currentUser.email
-        print (link)
-        Alamofire.request(link, method: .get ).responseJSON { response in
-            print(response.result.value)
-            
-            if let JSON = response.result.value  as? NSDictionary{
-                let check = JSON["result"] as! String
-                
-                if (check == "found"){
-                  uiViewController.performSegue(withIdentifier: "forget_pass", sender: self)
-                }
-                else {
-                    uiViewController.view.makeToast("هذا الايميل غير موجود مسبقا")
-                    
-                }
-                //                uiViewController.view.makeToast(NSLocalizedString("تم", comment: ""))
-                
-                
-            }
-            else{
-                uiViewController.view.makeToast("لا يوجد انترنت".localized())
-                
-                //                self.CreateDialog(uiViewController: uiViewController)
-                
-                
-                
-            }
-            
-        }
-    }
+   
     
     func SIGNUP(uiViewController : UIViewController){
         let link = Constants.SIGN_UP + "?Email=" + AppDelegate.currentUser.email + "&Name=" +
             "" + "&Password=" + AppDelegate.currentUser.pass + "&Phone=" + ""
         print (link)
         Alamofire.request(link, method: .get ).responseJSON { response in
-            print(response.result.value)
+            print(response.result.value as Any)
             
             if let JSON = response.result.value  as? NSDictionary{
                 let check = JSON["Result"] as! String
@@ -103,12 +277,23 @@ class Services{
                 if (check == "successfully"){
                     
                    
-                    
+                    //New Code by Mukesh
                     
                     let mainStoryboard:UIStoryboard = UIStoryboard(name:"Main" , bundle:nil)
-                    let desController = mainStoryboard.instantiateViewController(withIdentifier: "signupfinished") as! FinshSignUpViewController
-                    let newFrontViewController = UINavigationController.init(rootViewController: desController)
-                    uiViewController.present(newFrontViewController, animated: true, completion: nil)
+                    let desController = mainStoryboard.instantiateViewController(withIdentifier: "PhoneViewController") as! PhoneViewController
+                    uiViewController.present(desController, animated: true, completion: nil)
+
+                    
+                    
+                    /*
+                     
+                     let mainStoryboard:UIStoryboard = UIStoryboard(name:"Main" , bundle:nil)
+                     let desController = mainStoryboard.instantiateViewController(withIdentifier: "signupfinished") as! FinshSignUpViewController
+                     let newFrontViewController = UINavigationController.init(rootViewController: desController)
+                     uiViewController.present(newFrontViewController, animated: true, completion: nil)
+                     
+                     */
+                    
                 }
                 else {
                     uiViewController.view.makeToast("هذا الايميل موجود مسبقا".localized())
@@ -379,36 +564,7 @@ class Services{
         print(timeInterval)
     }
     
-    func sendCode(uiViewController : UIViewController , code:String  ){
-        let parameters: Parameters = ["mobile": "966563403905" ,
-                                      "password": "123asd!@#" ,
-                                      "sender": "AAIT.SA" ,
-                                      "msg": code ,
-                                      "lang": "3" ,
-                                      "applicationType": "68" ,
-                                      "numbers": AppDelegate.currentDriver.phoneNumber ]
-        
-        
-        
-        
-        let link = Constants.SEND_CODE
-        
-        Alamofire.request(link, method: .post, parameters: parameters).responseJSON { response in
-            print(response.result.value!)
-            if let result = response.result.value  as? NSDecimalNumber{
-                if result == 1{
-                    
-                    
-                    uiViewController.performSegue(withIdentifier: "enter_code", sender: self)
-
-                }
-            }
-            else{
-                uiViewController.view.makeToast("لا يوجد انترنت".localized())
-            }
-        
-        }
-    }
+  
     func drawPath(clat : String,clon : String,dlat : String,dlon : String  , Map : GMSMapView)
     {
         let origin = "\(clat),\(clon)"
@@ -671,7 +827,4 @@ class Services{
             
         }
     }
-    
-    
-    
 }
