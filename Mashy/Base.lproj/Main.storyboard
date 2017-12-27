@@ -827,13 +827,13 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="130"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="56" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HO0-7z-Clh">
-                                                                            <rect key="frame" x="43.5" y="38" width="56.5" height="54.5"/>
+                                                                            <rect key="frame" x="43.5" y="38.5" width="56.5" height="54.5"/>
                                                                             <fontDescription key="fontDescription" name="JFFlat-Regular" family="JF Flat" pointSize="52"/>
                                                                             <color key="textColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="ريال" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VKV-sJ-0Cv">
-                                                                            <rect key="frame" x="20" y="58" width="21.5" height="13.5"/>
+                                                                            <rect key="frame" x="20" y="59" width="21.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.71741224319999997" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -845,7 +845,7 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="سعودي" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mwq-Ua-Mv1">
-                                                                            <rect key="frame" x="8" y="71.5" width="32.5" height="13.5"/>
+                                                                            <rect key="frame" x="8" y="72.5" width="32.5" height="13.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.71741224319999997" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -3784,13 +3784,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="location" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vmw-ui-1L1">
-                                                <rect key="frame" x="159" y="30" width="182" height="18.5"/>
+                                                <rect key="frame" x="159" y="30" width="182" height="18"/>
                                                 <fontDescription key="fontDescription" name="JFFlat-Regular" family="JF Flat" pointSize="14"/>
                                                 <color key="textColor" red="0.40528846149999997" green="0.40528846149999997" blue="0.40528846149999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bjI-EE-y0R">
-                                                <rect key="frame" x="159" y="92.5" width="182" height="18"/>
+                                                <rect key="frame" x="159" y="92" width="182" height="18"/>
                                                 <fontDescription key="fontDescription" name="JFFlat-Regular" family="JF Flat" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -3830,13 +3830,13 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jlr-pQ-idE">
-                                                <rect key="frame" x="313" y="111.5" width="28" height="15"/>
+                                                <rect key="frame" x="313" y="111" width="28" height="15"/>
                                                 <fontDescription key="fontDescription" name="JFFlat-Regular" family="JF Flat" pointSize="14"/>
                                                 <color key="textColor" red="0.40528846149999997" green="0.40528846149999997" blue="0.40528846149999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="المسافه" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="MMP-5d-IJH">
-                                                <rect key="frame" x="159" y="66" width="182" height="18"/>
+                                                <rect key="frame" x="159" y="65.5" width="182" height="18"/>
                                                 <fontDescription key="fontDescription" name="JFFlat-Regular" family="JF Flat" pointSize="17"/>
                                                 <color key="textColor" red="1" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
